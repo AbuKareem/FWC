@@ -1,4 +1,4 @@
 if you want to Pull the docker image only, you can Pull it from docker hub via this command: docker pull abukareem/docker-firewall
 
-otherwise please download config.sh and docker-compose.yml, put them in the same directory, and then run config.sh, and follow along the guided setup 😉
+otherwise please download config.sh and docker-compose.yml, run docker-compose.yml to pull the image and setup the container, and then run config.sh, and follow along the guided setup 😉
 
