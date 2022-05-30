@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+
+  FW:
+    image: abukareem/docker-firewall
+    container_name: FW
+    #ports:
+      #- "80:80"
+      #- "10000:10000"
+    restart: unless-stopped
+    volumes:
+      - FWV1:/var/log
+    networks:
+      FWN:
+        ipv4_address: 172.18.0.254
+    stdin_open: true
+    tty: true
+    privileged: true
+  web:
+    image: httpd
+    container_name: web
+    cap_add:
+      - NET_ADMIN
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+  db:
+    image: mongo
+    container_name: db
+    cap_add:
+      - NET_ADMIN
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t  
+networks:
+  FWN:
+    name: FWN
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/24
+volumes:
+    FWV1:
+          gateway: 172.18.0.1
+volumes:
+    FWV1:
